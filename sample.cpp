@@ -7,10 +7,11 @@ int main() {
 
 	setting set;
 	set.domMaker = "Var.dom";
+	set.textMaker = "Var.text";
 	set.stateMaker = "Var.state";
 	set.parentTag = "jsx";
 
-	cout << jsx::make(code,set) << endl;
+	cout << main::make(code,set) << endl;
 
 	return 0;
 }
