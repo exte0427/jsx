@@ -9,6 +9,7 @@ namespace html {
 	class setting {
 	public:
 		string domMaker;
+		string textMaker;
 		string stateMaker;
 		string parentTag;
 	};
@@ -229,7 +230,7 @@ namespace html {
 		}
 	}
 
-	namespace jsx {
+	namespace main {
 		string makeState(vector<maker::state> states , setting set) {
 			string returnVal = "[";
 
@@ -244,7 +245,7 @@ namespace html {
 
 			for (auto element : myDom) {
 				if (element.type == "string")
-					retrunVal += "Var.text(\"" + element.data + "\"),";
+					retrunVal += set.textMaker + "(\"" + element.data + "\"),";
 				else {
 					retrunVal += set.domMaker + "(\"" + element.type + "\"," + makeState(element.states, set) + "," + makeCode(element.childs, set) + "),";
 				}
@@ -259,6 +260,13 @@ namespace html {
 			string jsCode = set .domMaker+"(\"" + set.parentTag + "\",[]," + makeCode(domData, set) + ");";
 
 			return jsCode;
+		}
+
+		vector<maker::dom> parse(string htmlCode) {
+			vector<parser::token> tokens = parser::parse(htmlCode);
+			vector<maker::dom> domData = maker::parse(tokens);
+
+			return domData;
 		}
 	}
 
