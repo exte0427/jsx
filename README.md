@@ -13,13 +13,13 @@ vector<maker::dom> parsedData = html::main::parse(code);
 ### make jsx code
 you can easily make jsx code
 ```cpp
-setting set;
+html::setting set;
 set.domMaker = "Var.dom";
 set.textMaker = "Var.text";
 set.stateMaker = "Var.state";
 set.parentTag = "jsx";
 
-cout << main::make(code,set) << endl;
+cout << html::main::make(code,set) << endl;
 ```
 `domMaker` is the function's name that makes virtual dom
 the function must look like this
